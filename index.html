@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Bootstrap 101 Template</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div id="app">
+                <button class="btn btn-primary" :disabled="searching" @click="loadBooks">
+                    <i class="fa fa-spinner fa-spin" v-if="searching"></i>
+                    Load Books
+                </button>
+                <ul class="list-group" v-if="writing == 'books'">
+                    <li class="list-group-item" v-for="book in books" :key="book.id" @click="checkOutBook(book)">
+                        {{ book.title }} ({{ book.copy_right }}) - {{ book.author.pages }} author
+                    </li>
+                </ul>
+
+                <ul class="list-group" v-if="writing == 'author'">
+                    <li class="list-group-item" v-for="author in author" :key="author.id">
+                        {{ author.name }} ({{author.gender }} / {{ author.age }})
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-resource@1.3.4/dist/vue-resource.min.js"></script>
+        <script src="https://openlibrary.org/api/books?bibkeys=ISBN:0451526538&callback=mycallback"></script>
+        <script src="./main.js"></script>
+        
+    </body>
+</html>
